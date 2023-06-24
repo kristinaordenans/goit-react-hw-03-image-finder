@@ -1,8 +1,6 @@
 import css from "./Modal.module.css"
 import { Component } from "react"
 
-const modalRoot = document.querySelector('#modal-root');
-
 export class Modal extends Component {
     componentDidMount() {
         document.addEventListener("keydown", this.handleKeyDown);

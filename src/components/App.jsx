@@ -4,6 +4,7 @@ import { Searchbar } from "./Searchbar/Searchbar";
 import { ImageGallery } from './ImageGallery/ImageGallery';
 import { PixabayAPI } from './FetchPic/FetchPic';
 import { LoadMoreBtn } from './Button/Button';
+import { Loader } from './Loader/Loader';
 import css from "./App.module.css";
 
 
@@ -12,12 +13,12 @@ const pixabayAPI = new PixabayAPI();
 export class App extends Component{
   state = {
     keyWord: '',
-    isLoading: false,
     error: false,
     images: [],
     page: 1,
-    hasMore: false,
+    morePics: false,
     showModal: false,
+    isLoading: false
   }
 
   // togleModal = () =>{
@@ -67,14 +68,14 @@ export class App extends Component{
             }))
 
           const totalPage = Math.ceil(totalHits / pixabayAPI.perPage);
-          this.setState({hasMore: totalPage !== page,})
+          this.setState({morePics: totalPage !== page,})
         }
       }
       catch (error) {
         this.setState({
           error,
           images: [],
-          hasMore: false,
+          morePics: false,
         })
       } finally {
         this.setState({ isLoading: false })
@@ -83,13 +84,14 @@ export class App extends Component{
   }
   
   render() {
-    const { images, error, hasMore } = this.state;
+    const { images, error, morePics, isLoading} = this.state;
     return (
       <div>
         <Searchbar handleSubmit={this.handleSearchImg} />
         <div className={css.container}>
-          {!error && <ImageGallery images={images}/>}
-          {hasMore && <LoadMoreBtn handleClick={this.hamdleLoadMoreButton} />}
+          {!error && <ImageGallery images={images} />}
+          {isLoading && <Loader/>}
+          {morePics && <LoadMoreBtn handleClick={this.hamdleLoadMoreButton} />}
         </div>
       </div>
   );
