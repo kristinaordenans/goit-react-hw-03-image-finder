@@ -1,9 +1,5 @@
 import css from "./Searchbar.module.css";
 import { Component } from "react";
-// import { toast } from "react-toastify";
-// import 'react-toastify/dist/ReactToastify.css';
-// import { SearchbarCSS, SearchForm, SearchFormButton, SearchFormButtonLabel, SearchFormInput } from "./Searchbar.styled";
-// import PropTypes from "prop-types"
 
 export class Searchbar extends Component {
     state = {
@@ -45,7 +41,7 @@ export class Searchbar extends Component {
                         name="searchWord"
                         value={searchWord}
                         type="text"
-                        autocomplete="off"
+                        autoComplete="off"
                         autoFocus
                         placeholder="Search images and photos"
                     />
@@ -54,46 +50,3 @@ export class Searchbar extends Component {
         )
     }
 }
-
-
-// ______________________-
-
-// import React, { Component } from 'react';
-
-// export class Searchbar extends Component{
-
-//   state = {
-//     searchRequest: '',
-//   }
-
-//   handleChange = ({target:{value}}) => {
-//     this.setState({value});
-//     // console.log(value);
-//   }
-
-//   handleSubmit = (e) => {
-//     e.preventDefault();
-//     console.log(this.state);
-//   }
-
-//   render() {
-    
-//     return (
-//         <header className={css.searchbar}>
-//         <form className={css.form} onClick={this.handleSubmit}>
-//                 <button type="submit" className={css.button}>
-//                 <span className={css.buttonLabel}>Search</span>
-//                 </button>
-//               <input
-//                 className={css.input}
-//                 type="text"
-//                 autoComplete="off"
-//                 autoFocus
-//             placeholder="Search images and photos"
-//             onChange={this.handleChange}
-//             searchRequest={this.searchRequest}
-//               />
-//             </form>
-//           </header>
-//     )}
-// }
